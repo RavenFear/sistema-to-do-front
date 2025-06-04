@@ -1,0 +1,168 @@
+<p-table #dt [value]="actividades" dataKey="id" [rows]="20" [loading]="loading"
+         [totalRecords]="totalRegistros"
+         [rowHover]="true"
+         [rowsPerPageOptions]="[20,50]"
+         styleClass="p-datatable-gridlines" [paginator]="true"
+         responsiveLayout="scroll">
+    <ng-template pTemplate="caption">
+        <button pButton pRipple label="Nueva tarea" icon="pi pi-plus" class="p-button-info mr-2"
+                (click)="onShowNuevaTarea()"
+        ></button>
+        <div class="flex table-header">
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="min-width: 12rem">
+
+            </th>
+            <th style="min-width: 12rem">
+                <div class="flex justify-content-between align-items-center">
+                    Id
+                </div>
+            </th>
+            <th style="min-width: 12rem">
+                <div class="flex justify-content-between align-items-center">
+                    Titulo
+                </div>
+            </th>
+            <th style="min-width: 10rem">
+                <div class="flex justify-content-between align-items-center">
+                    Estado
+                </div>
+            </th>
+            <th style="min-width: 30rem">
+                <div class="flex justify-content-between align-items-center">
+                    Descripción
+                </div>
+            </th>
+            <th style="min-width: 14rem">
+                <div class="flex justify-content-between align-items-center">
+                    Fecha de solicitud
+                </div>
+            </th>
+            <th style="min-width: 12rem">
+                <div class="flex justify-content-between align-items-center">
+                    Fecha de compromiso
+                </div>
+            </th>
+            <th style="min-width: 8rem">
+                <div class="flex justify-content-between align-items-center">
+                    Finalizada
+                </div>
+            </th>
+        </tr>
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                <input style="min-width: 12rem"
+                       pInputText
+                       type="text"
+                       (input)="dt.filter($event.target['value'],'id', 'contains')"
+                       placeholder="Id"/>
+            </th>
+            <th>
+                <input style="min-width: 12rem"
+                       pInputText
+                       type="text"
+                       (input)="dt.filter($event.target['value'],'nombre', 'contains')"
+                       placeholder="Titulo"/>
+            </th>
+            <th>
+
+            </th>
+            <th>
+                <input style="min-width: 30rem"
+                       pInputText
+                       type="text"
+                       (input)="dt.filter($event.target['value'],'descripcion', 'contains')"
+                       placeholder="Descripción"/>
+            </th>
+            <th>
+                <input style="min-width: 14rem"
+                       pInputText
+                       type="text"
+                       (input)="dt.filter($event.target['value'],'fecha_registro', 'contains')"
+                       placeholder="Fecha de solicitud"/>
+            </th>
+            <th>
+                <input style="min-width: 12rem"
+                       pInputText
+                       type="text"
+                       (input)="dt.filter($event.target['value'],'fecha_compromiso', 'contains')"
+                       placeholder="Fecha compromiso"/>
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+        <tr>
+            <td style="text-align: center">
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2"
+                        (click)="onShowEditarTarea(item)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
+                        (click)="onEliminarActividad(item)"></button>
+            </td>
+            <td style="text-align: center">
+                {{ item.id }}
+            </td>
+            <td style="text-align: center">
+                {{ item.nombre }}
+            </td>
+            <td style="text-align: center">
+                @switch (item.status) {
+                    @case ('FINALIZADO') {
+                        <p-tag severity="success" value="Finalizada" [rounded]="true"/>
+                    }
+                    @case ('EN_CURSO') {
+                        <p-tag severity="warn" value="En proceso" [rounded]="true"/>
+                    }
+                    @default {
+                        <p-tag severity="info" value="Creada" [rounded]="true"/>
+                    }
+                }
+            </td>
+            <td style="text-align: center">
+                {{ item.descripcion }}
+            </td>
+            <td style="text-align: center">
+                {{ item.fechaRegistro }}
+            </td>
+            <td style="text-align: center">
+                {{ item.fechaCompromiso }}
+            </td>
+            <td style="text-align: center">
+                <i class="pi"
+                   [ngClass]="{'true-icon pi-check-circle text-green-500': item.status === 'FINALIZADO',
+                                   'false-icon pi-times-circle text-pink-500': item.status !== 'FINALIZADO'}"></i>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="paginatorleft">
+        <div style="padding-top: 7px;margin-left: 15px;">Cantidad de
+            registros: {{ totalRegistros }}
+        </div>
+    </ng-template>
+    <ng-template pTemplate="paginatorright">
+        <button style="margin-right: 15px;" class="p-button-raised p-button-success"
+                type="button" pButton icon="pi pi-refresh" (click)="dt.reset()">
+        </button>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="8">Sin registros.</td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="loadingbody">
+        <tr>
+            <td colspan="8">Cargando actividades. Un momento por favor.</td>
+        </tr>
+    </ng-template>
+</p-table>
+<app-create-update-task-dialog #cutd
+                               (task)="onSubmit($event)"
+                               (editTask)="onEditarActividad($event)"
+>
+
+</app-create-update-task-dialog>

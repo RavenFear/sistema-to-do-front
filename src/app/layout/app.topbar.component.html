@@ -1,0 +1,12 @@
+<div class="layout-topbar" [ngClass]="{'border-bottom-none': layoutService.config().topbarTheme !== 'light'}">
+    <div class="layout-topbar-start">
+        <a class="layout-topbar-logo" routerLink="/">
+            <img id="topbar-logo" src="assets/layout/images/logo.png" style="width: 270px; height: 176px;" alt="">
+        </a>
+        <a #menuButton class="layout-menu-button" (click)="onMenuButtonClick()" pRipple>
+            <i class="pi pi-angle-right"></i>
+        </a>
+
+    </div>
+
+</div>

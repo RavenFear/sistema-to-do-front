@@ -1,0 +1,52 @@
+<p-dialog [(visible)]="display" [modal]="true" [focusOnShow]="false" [maximizable]="true"
+          (onHide)="onHide()"
+          [style]="{'width': '60%'}">
+    <p-header>
+        <h5>Tarea</h5>
+    </p-header>
+    <div class="col-12">
+        <div class="card">
+            <form [formGroup]="form" class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-6">
+                    <label for="nombre">Nombre</label>
+                    <input pInputText id="nombre" type="text" formControlName="nombre"/>
+                </div>
+
+                <div class="field col-12">
+                    <label for="descripcion">Descripción</label>
+                    <textarea pInputTextarea id="descripcion" rows="4" formControlName="descripcion"></textarea>
+                </div>
+
+                <div class="field col-12 md:col-6">
+                    <label for="fechaRegistro">Fecha de Registro</label>
+                    <input pInputText type="date" id="fechaRegistro" formControlName="fechaRegistro"/>
+                </div>
+
+                <div class="field col-12 md:col-6">
+                    <label for="fechaCompromiso">Fecha de Compromiso</label>
+                    <input pInputText type="date" id="fechaCompromiso" formControlName="fechaCompromiso"/>
+                </div>
+
+                <div class="field col-12 md:col-6">
+                    <label>Estado</label>
+                    <p-dropdown
+                        [options]="statusOptions"
+                        [filter]="true"
+                        [filterFields]="['label']"
+                        [formControl]="form.controls['status']"
+                        appendTo="body"
+                    ></p-dropdown>
+                </div>
+            </form>
+        </div>
+    </div>
+    <p-footer>
+        <button pButton pRipple class="p-button-danger flex-1 p-button-outlined" label="Cancelar"
+                type="button"
+                icon="pi pi-fw pi-trash"></button>
+        <button pButton pRipple class="p-button-primary flex-1 border-round" label="Guardar"
+                (click)="onSubmit()"
+                type="submit" [disabled]="!form.valid"
+                icon="pi pi-fw pi-check"></button>
+    </p-footer>
+</p-dialog>

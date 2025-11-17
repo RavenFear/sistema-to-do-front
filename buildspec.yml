@@ -6,10 +6,13 @@ phases:
             nodejs: 18
         commands:
             - npm ci
+
     build:
         commands:
             - npm run build -- --configuration production
+
 artifacts:
     files:
-        - '**/*'
-    base-directory: dist/booster-ng
+        - dist/booster-ng/**/*       # Tu build Angular
+        - appspec.yml                # Necesario para CodeDeploy
+        - scripts/**/*               # Scripts de hooks (restart apache, etc.)

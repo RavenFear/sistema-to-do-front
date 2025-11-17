@@ -1,0 +1,12 @@
+version: 0.0
+os: linux
+
+files:
+    - source: dist/booster-ng/
+      destination: /var/www/html/app
+
+hooks:
+    AfterInstall:
+        - location: scripts/restart_apache.sh
+          timeout: 180
+          runas: ubuntu

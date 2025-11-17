@@ -9,7 +9,7 @@ phases:
 
     build:
         commands:
-            - npm run build -- --configuration production --base-href=/app/
+            - npm run build -- --configuration production
             - chmod +x scripts/restart_apache.sh
 
 artifacts:

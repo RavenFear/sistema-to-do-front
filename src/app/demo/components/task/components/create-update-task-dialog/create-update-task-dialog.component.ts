@@ -46,7 +46,12 @@ export class CreateUpdateTaskDialogComponent implements OnInit, AfterContentChec
             fechaRegistro: ['', Validators.required],
             fechaCompromiso: ['', Validators.required],
             status: ['', Validators.required],
-        })
+            clienteNombre: ['', Validators.required],
+            clienteTelefono: [''],
+            clienteEmail: [''],
+            direccionEnvio: ['', Validators.required],
+            productos: ['', Validators.required]
+        });
     }
 
     loadForm(task: TaskModel) {
@@ -57,9 +62,14 @@ export class CreateUpdateTaskDialogComponent implements OnInit, AfterContentChec
             fechaRegistro: [task.fechaRegistro, Validators.required],
             fechaCompromiso: [task.fechaCompromiso, Validators.required],
             status: [task.status, Validators.required],
-        })
-        this.edit = true;
+            clienteNombre: [task.clienteNombre || '', Validators.required],
+            clienteTelefono: [task.clienteTelefono || ''],
+            clienteEmail: [task.clienteEmail || ''],
+            direccionEnvio: [task.direccionEnvio || '', Validators.required],
+            productos: [task.productos || '', Validators.required]
+        });
     }
+
 
     onHide() {
         this.form.reset();

@@ -15,6 +15,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {DropdownModule} from "primeng/dropdown";
 import {InputTextareaModule} from "primeng/inputtextarea";
 import {TagModule} from "primeng/tag";
+import {MultiSelectModule} from "primeng/multiselect";
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {TagModule} from "primeng/tag";
         ReactiveFormsModule,
         DropdownModule,
         InputTextareaModule,
-        TagModule
+        TagModule,
+        MultiSelectModule
     ]
 })
 export class TaskModule {

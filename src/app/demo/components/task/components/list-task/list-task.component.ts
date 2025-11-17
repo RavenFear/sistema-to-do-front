@@ -15,6 +15,12 @@ export class ListTaskComponent implements OnInit {
 
     @ViewChild('dt', {static: false}) dt: Table;
 
+    statusOptions = [
+        {label: 'Creada', value: 'Creada'},
+        {label: 'En proceso', value: 'EN_CURSO'},
+        {label: 'Finalizada', value: 'FINALIZADO'}
+    ];
+
 
     @ViewChild('cutd', {static: true}) cutd: CreateUpdateTaskDialogComponent;
 

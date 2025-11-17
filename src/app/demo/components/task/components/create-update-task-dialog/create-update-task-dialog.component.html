@@ -2,31 +2,37 @@
           (onHide)="onHide()"
           [style]="{'width': '60%'}">
     <p-header>
-        <h5>Tarea</h5>
+        <h5>Orden</h5>
     </p-header>
     <div class="col-12">
         <div class="card">
             <form [formGroup]="form" class="p-fluid p-formgrid grid">
+
+                <!-- Nombre del Pedido -->
                 <div class="field col-12 md:col-6">
-                    <label for="nombre">Nombre</label>
-                    <input pInputText id="nombre" type="text" formControlName="nombre"/>
+                    <label for="nombre">Cantidad</label>
+                    <input pInputText id="nombre" type="number" formControlName="nombre"/>
                 </div>
 
+                <!-- Descripción -->
                 <div class="field col-12">
                     <label for="descripcion">Descripción</label>
                     <textarea pInputTextarea id="descripcion" rows="4" formControlName="descripcion"></textarea>
                 </div>
 
+                <!-- Fecha de Registro -->
                 <div class="field col-12 md:col-6">
                     <label for="fechaRegistro">Fecha de Registro</label>
                     <input pInputText type="date" id="fechaRegistro" formControlName="fechaRegistro"/>
                 </div>
 
+                <!-- Fecha de Compromiso -->
                 <div class="field col-12 md:col-6">
                     <label for="fechaCompromiso">Fecha de Compromiso</label>
                     <input pInputText type="date" id="fechaCompromiso" formControlName="fechaCompromiso"/>
                 </div>
 
+                <!-- Estado -->
                 <div class="field col-12 md:col-6">
                     <label>Estado</label>
                     <p-dropdown
@@ -37,6 +43,36 @@
                         appendTo="body"
                     ></p-dropdown>
                 </div>
+
+                <!-- Detalles del Cliente -->
+                <div class="field col-12 md:col-6">
+                    <label for="clienteNombre">Nombre del Cliente</label>
+                    <input pInputText id="clienteNombre" type="text" formControlName="clienteNombre"/>
+                </div>
+
+                <div class="field col-12 md:col-6">
+                    <label for="clienteTelefono">Teléfono</label>
+                    <input pInputText id="clienteTelefono" type="text" formControlName="clienteTelefono"/>
+                </div>
+
+                <div class="field col-12 md:col-6">
+                    <label for="clienteEmail">Correo Electrónico</label>
+                    <input pInputText id="clienteEmail" type="email" formControlName="clienteEmail"/>
+                </div>
+
+                <!-- Dirección de Envío -->
+                <div class="field col-12">
+                    <label for="direccionEnvio">Dirección de Envío</label>
+                    <textarea pInputTextarea id="direccionEnvio" rows="3" formControlName="direccionEnvio"></textarea>
+                </div>
+
+                <!-- Productos Solicitados -->
+                <div class="field col-12">
+                    <label for="productos">Productos Solicitados (nombre y cantidad)</label>
+                    <textarea pInputTextarea id="productos" rows="4" formControlName="productos"
+                              placeholder="Ejemplo: Producto A - 2 unidades, Producto B - 1 unidad"></textarea>
+                </div>
+
             </form>
         </div>
     </div>

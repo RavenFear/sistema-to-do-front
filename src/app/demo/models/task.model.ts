@@ -5,4 +5,11 @@ export interface TaskModel {
     fechaRegistro: Date;
     fechaCompromiso: Date;
     status: string;
+
+    // Campos adicionales para gestionar pedidos
+    clienteNombre?: string;
+    clienteTelefono?: string;
+    clienteEmail?: string;
+    direccionEnvio?: string;
+    productos?: string;
 }

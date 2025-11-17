@@ -10,9 +10,10 @@ phases:
     build:
         commands:
             - npm run build -- --configuration production
+            - chmod +x scripts/restart_apache.sh
 
 artifacts:
     files:
-        - dist/booster-ng/**/*       # Tu build Angular
-        - appspec.yml                # Necesario para CodeDeploy
-        - scripts/**/*               # Scripts de hooks (restart apache, etc.)
+        - appspec.yml
+        - scripts/**
+        - dist/booster-ng/**/*

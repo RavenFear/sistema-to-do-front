@@ -7,12 +7,16 @@ const routerOptions: ExtraOptions = {
 };
 
 const routes: Routes = [
-    {path: '', pathMatch: 'full', redirectTo: ''},
+    {path: '', pathMatch: 'full', redirectTo: 'login'},
+    {
+        path: 'login',
+        loadChildren: () => import('../auth/auth.module').then(m => m.AuthModule)
+    },
     {
         path: '', component: AppLayoutComponent,
         children: [
             {
-                path: '',
+                path: 'app',
                 loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule)
             },
         ]
